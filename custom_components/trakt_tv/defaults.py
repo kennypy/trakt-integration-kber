@@ -2,12 +2,7 @@
 
 from typing import Any, Dict, Optional
 
-from .models.kind import (
-    ANTICIPATED_KINDS,
-    BASIC_KINDS,
-    NEXT_TO_WATCH_KINDS,
-    UPCOMING_KINDS,
-)
+from .models.kind import TraktKind
 
 SENSOR_GROUPS = [
     "upcoming",
@@ -22,6 +17,14 @@ SENSOR_GROUPS = [
 
 DEFAULT_ENABLED_GROUPS = {group: True for group in SENSOR_GROUPS}
 
+# Conservative defaults: only enable the kinds that are widely supported by
+# the Trakt API. Variants like dvd / new_show / premiere return errors on
+# many accounts (e.g. 404 "'type' is required" on calendars/my/dvd), which
+# would crash the whole coordinator refresh via gather. Users can still add
+# those kinds via YAML if they need them.
+_DEFAULT_UPCOMING_KINDS = [TraktKind.MOVIE, TraktKind.SHOW]
+_DEFAULT_NEXT_TO_WATCH_KINDS = [TraktKind.NEXT_TO_WATCH_AIRED]
+
 
 def _upcoming_defaults() -> Dict[str, Any]:
     return {
@@ -29,7 +32,7 @@ def _upcoming_defaults() -> Dict[str, Any]:
             "days_to_fetch": 30,
             "max_medias": 3,
         }
-        for trakt_kind in UPCOMING_KINDS
+        for trakt_kind in _DEFAULT_UPCOMING_KINDS
     }
 
 
@@ -41,13 +44,14 @@ def _next_to_watch_defaults() -> Dict[str, Any]:
             "sort_by": "released",
             "sort_order": "asc",
         }
-        for trakt_kind in NEXT_TO_WATCH_KINDS
+        for trakt_kind in _DEFAULT_NEXT_TO_WATCH_KINDS
     }
 
 
 def _recommendation_defaults() -> Dict[str, Any]:
     return {
-        trakt_kind.value.identifier: {"max_medias": 3} for trakt_kind in BASIC_KINDS
+        trakt_kind.value.identifier: {"max_medias": 3}
+        for trakt_kind in (TraktKind.MOVIE, TraktKind.SHOW)
     }
 
 
@@ -57,7 +61,7 @@ def _anticipated_defaults() -> Dict[str, Any]:
             "max_medias": 3,
             "exclude_collected": False,
         }
-        for trakt_kind in ANTICIPATED_KINDS
+        for trakt_kind in (TraktKind.ANTICIPATED_MOVIE, TraktKind.ANTICIPATED_SHOW)
     }
 
 
