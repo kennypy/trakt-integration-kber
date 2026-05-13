@@ -20,6 +20,13 @@ class TestDefaults:
             assert value["max_medias"] == 3
             assert value["days_to_fetch"] == 30
 
+    def test_upcoming_defaults_only_safe_kinds(self):
+        # Avoid kinds like dvd / new_show / premiere which currently
+        # return errors from Trakt and would crash setup via gather.
+        sensors = build_default_sensors_config()
+        assert set(sensors["upcoming"].keys()) == {"movie", "show"}
+        assert set(sensors["all_upcoming"].keys()) == {"movie", "show"}
+
     def test_next_to_watch_defaults_have_sort_options(self):
         sensors = build_default_sensors_config()
         for value in sensors["next_to_watch"].values():
@@ -27,6 +34,10 @@ class TestDefaults:
             assert value["sort_order"] == "asc"
             assert value["exclude"] == []
             assert value["max_medias"] == 3
+
+    def test_next_to_watch_defaults_single_variant(self):
+        sensors = build_default_sensors_config()
+        assert set(sensors["next_to_watch"].keys()) == {"only_aired"}
 
     def test_watchlist_defaults_for_both_kinds(self):
         sensors = build_default_sensors_config()

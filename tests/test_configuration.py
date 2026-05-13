@@ -76,7 +76,7 @@ class TestUiManagedConfiguration:
         )
         assert configuration.recommendation_identifier_exists("movie") is True
         assert configuration.anticipated_identifier_exists("movie") is True
-        assert configuration.next_to_watch_identifier_exists("all") is True
+        assert configuration.next_to_watch_identifier_exists("only_aired") is True
         assert configuration.watchlist_identifier_exists("movie") is True
         assert configuration.watchlist_identifier_exists("show") is True
         assert configuration.source_exists("stats") is True
