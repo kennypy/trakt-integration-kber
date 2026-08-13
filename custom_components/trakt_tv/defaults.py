@@ -11,6 +11,7 @@ SENSOR_GROUPS = [
     "recommendation",
     "anticipated",
     "watchlist",
+    "collection",
     "stats",
     "now_playing",
 ]
@@ -76,6 +77,10 @@ def _watchlist_defaults() -> Dict[str, Any]:
     return {"movie": dict(base), "show": dict(base)}
 
 
+def _collection_defaults() -> Dict[str, Any]:
+    return {"movie": {"max_medias": 20}, "show": {"max_medias": 20}}
+
+
 def default_sensor_config_for_group(group: str) -> Any:
     """Return the default config payload for a known sensor group."""
     if group == "upcoming" or group == "all_upcoming":
@@ -88,6 +93,8 @@ def default_sensor_config_for_group(group: str) -> Any:
         return _anticipated_defaults()
     if group == "watchlist":
         return _watchlist_defaults()
+    if group == "collection":
+        return _collection_defaults()
     if group == "stats":
         return ["all"]
     if group == "now_playing":
