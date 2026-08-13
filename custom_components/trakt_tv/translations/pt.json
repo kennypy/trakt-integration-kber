@@ -4,7 +4,8 @@
         "abort": {
             "authorize_url_timeout": "Timeout a gerar o link de autorização URL.",
             "missing_configuration": "O componentne não se encontra configurado por favor consulta a documentação.",
-            "no_url_available": "Sem link disponivel . Para informação sobre este erro, ({docs_url})"
+            "no_url_available": "Sem link disponivel . Para informação sobre este erro, ({docs_url})",
+            "reauth_successful": "Reautenticação efetuada com sucesso"
         },
         "create_entry": {
             "default": "Autenticação efetuada"
@@ -12,6 +13,10 @@
         "step": {
             "pick_implementation": {
                 "title": "Escolhe o metodo de autenticação"
+            },
+            "reauth_confirm": {
+                "title": "Reautenticar Trakt",
+                "description": "O Trakt rejeitou o token guardado. Confirma para iniciar sessão novamente com o teu client ID e secret existentes."
             },
             "user": {
                 "data": {

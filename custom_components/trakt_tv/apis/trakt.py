@@ -7,9 +7,10 @@ from datetime import datetime
 from typing import Any, Dict
 from zoneinfo import ZoneInfo
 
-from aiohttp import ClientResponse, ClientSession
+from aiohttp import ClientResponse, ClientResponseError, ClientSession
 from async_timeout import timeout
 from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.helpers.config_entry_oauth2_flow import OAuth2Session
 
 from custom_components.trakt_tv.utils import compute_calendar_args
@@ -47,7 +48,14 @@ class TraktApi:
     async def async_get_access_token(self) -> str:
         """Return a valid access token."""
         if not self.oauth_session.valid_token:
-            await self.oauth_session.async_ensure_token_valid()
+            try:
+                await self.oauth_session.async_ensure_token_valid()
+            except ClientResponseError as err:
+                if err.status in (400, 401):
+                    raise ConfigEntryAuthFailed(
+                        "Trakt rejected the stored token; reauthentication required"
+                    ) from err
+                raise
 
         return self.oauth_session.token["access_token"]
 
@@ -98,6 +106,11 @@ class TraktApi:
                 return deserialize_json(text)
             elif allow_no_content and response.status == 204:
                 return None
+
+            if response.status == 401:
+                raise ConfigEntryAuthFailed(
+                    "Trakt rejected the access token; reauthentication required"
+                )
 
             if response.status == 429:
                 wait_time = int(response.headers.get("Retry-After", 60))

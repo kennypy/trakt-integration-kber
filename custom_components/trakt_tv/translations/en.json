@@ -4,7 +4,8 @@
         "abort": {
             "authorize_url_timeout": "Timeout generating authorize URL.",
             "missing_configuration": "The component is not configured. Please follow the documentation.",
-            "no_url_available": "No URL available. For information about this error, [check the help section]({docs_url})"
+            "no_url_available": "No URL available. For information about this error, [check the help section]({docs_url})",
+            "reauth_successful": "Reauthentication was successful"
         },
         "create_entry": {
             "default": "Successfully authenticated"
@@ -12,6 +13,10 @@
         "step": {
             "pick_implementation": {
                 "title": "Pick Authentication Method"
+            },
+            "reauth_confirm": {
+                "title": "Reauthenticate Trakt",
+                "description": "Trakt rejected the stored token. Confirm to log in again with your existing client ID and secret."
             },
             "user": {
                 "data": {

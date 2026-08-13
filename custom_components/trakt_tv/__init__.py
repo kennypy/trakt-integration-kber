@@ -4,9 +4,11 @@ import asyncio
 import logging
 from datetime import timedelta
 
+from aiohttp import ClientError, ClientResponseError
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_CLIENT_ID, CONF_CLIENT_SECRET
 from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import ConfigEntryAuthFailed, ConfigEntryNotReady
 from homeassistant.helpers import config_entry_oauth2_flow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.config_entry_oauth2_flow import (
@@ -77,6 +79,17 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
     implementation = await async_get_config_entry_implementation(hass, entry)
     session = OAuth2Session(hass, entry, implementation)
+
+    try:
+        await session.async_ensure_token_valid()
+    except ClientResponseError as err:
+        if err.status in (400, 401):
+            raise ConfigEntryAuthFailed(
+                "Trakt rejected the stored token; reauthentication required"
+            ) from err
+        raise ConfigEntryNotReady(f"Trakt token refresh failed: {err}") from err
+    except ClientError as err:
+        raise ConfigEntryNotReady(f"Could not reach Trakt: {err}") from err
 
     configuration = _build_configuration(hass, entry)
     hass.data.setdefault(DOMAIN, {})
