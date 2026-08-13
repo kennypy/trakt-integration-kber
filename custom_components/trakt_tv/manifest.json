@@ -5,7 +5,7 @@
   "documentation": "https://github.com/kennypy/trakt-integration-kber",
   "issue_tracker": "https://github.com/kennypy/trakt-integration-kber/issues",
   "codeowners": ["@kennypy"],
-  "version": "0.17.0",
+  "version": "0.17.1",
   "iot_class": "cloud_polling",
   "integration_type": "hub"
 }
