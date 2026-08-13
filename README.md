@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  View your Trakt calendar items in <a href="https://github.com/custom-cards/upcoming-media-card">Upcoming Media Card</a> on a Home Assistant dashboard.
+  View your Trakt calendar items on a Home Assistant dashboard.
 </p>
 
 <p align="center">
@@ -30,12 +30,6 @@
 
 ---
 
-## Recomendations 💡
-
-Having the following installed in Home Assistant will help best use this integration:
-
-- [Upcoming Media Card](https://github.com/custom-cards/upcoming-media-card)
-
 ## Installation 🏠
 
 Installation is a multi-step process. Follow each of the following steps.
@@ -48,7 +42,7 @@ This integration is available in [HACS](https://hacs.xyz/) (Home Assistant Commu
 - Press the **Explore & Add Repositories** button
 - Search for "Trakt"
   - Note: There are two Trakt integrations.
-    Choose the one with the description "A Trakt integration for Home Assistant compatible with upcoming media card".
+    Choose this one, not sensor.trakt.
     See [Why not use sensor.trakt?](#why-not-use-sensortrakt-)
 - Press the **Install this repository in HACS** button
 - Press the **Install** button
@@ -383,26 +377,6 @@ You have to provide a `client_id` and a `client_secret` to use this integration.
 - Press the **Finish** button
 
 Depending on the options you set in the `configuration.yaml` file, the sensors may take a while to be created and populated.
-
-### 6. Add an Upcoming Media Card
-
-Go to your Dashboard, enable editing, and add a manual card like the following:
-
-```yaml
-type: custom:upcoming-media-card
-entity: sensor.trakt_upcoming_shows
-title: Upcoming Episodes
-image_style: fanart
-hide_empty: true
-title_text: $title
-line1_text: $episode
-line2_text: $number
-line3_text: $day, $date $time
-line4_text: $empty
-max: 10
-```
-
-See the [Upcoming Media Card](https://github.com/custom-cards/upcoming-media-card) page for formatting and display options to add to your card.
 
 ---
 
