@@ -2,7 +2,7 @@
 
 """
 This a script to spam trakt and provok a rate limite and handle it.
-It is related to: https://github.com/dylandoamaral/trakt-integration/issues/54.
+It is related to: https://github.com/kennypy/trakt-integration-kber/issues/54.
 
 It didn't work ^^, I made more than 3000 requests in less then 5 minutes.
 According to https://trakt.docs.apiary.io/#introduction/rate-limiting it

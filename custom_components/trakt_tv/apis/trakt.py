@@ -63,7 +63,7 @@ class TraktApi:
             await sleep(wait_time)
             return await self.request(method, url, retry, **kwargs)
         else:
-            guidance = f"Too many retries, if you find this error, please raise an issue at https://github.com/dylandoamaral/trakt-integration/issues."
+            guidance = f"Too many retries, if you find this error, please raise an issue at https://github.com/kennypy/trakt-integration-kber/issues."
             raise TraktException(f"{error} {guidance}")
 
     async def request(

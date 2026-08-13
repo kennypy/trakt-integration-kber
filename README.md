@@ -4,13 +4,13 @@
   <a href="https://github.com/custom-components/hacs">
     <img src="https://img.shields.io/badge/HACS-Default-orange.svg" alt="HACS" />
   </a>
-  <a href="https://github.com/dylandoamaral/trakt-integration">
-    <img src="https://img.shields.io/github/v/release/dylandoamaral/trakt-integration" alt="Release" />
+  <a href="https://github.com/kennypy/trakt-integration-kber">
+    <img src="https://img.shields.io/github/v/release/kennypy/trakt-integration-kber" alt="Release" />
   </a>
-  <a href="https://github.com/dylandoamaral/trakt-integration">
-    <img src="https://img.shields.io/github/last-commit/dylandoamaral/trakt-integration" alt="Last Commit" />
+  <a href="https://github.com/kennypy/trakt-integration-kber">
+    <img src="https://img.shields.io/github/last-commit/kennypy/trakt-integration-kber" alt="Last Commit" />
   </a>
-  <a href="https://www.buymeacoffee.com/dylandoamaral">
+  <a href="https://www.buymeacoffee.com/kennypy">
     <img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow" alt="Donate Coffee" />
   </a>
 </p>
@@ -21,11 +21,11 @@
 
 <p align="center">
   :warning: This is still an early release. It may not be stable and it may have bugs. :warning:<br />
-  See the <a href="https://github.com/dylandoamaral/trakt-integration/issues">Issues</a> page to report a bug or to add a feature request.
+  See the <a href="https://github.com/kennypy/trakt-integration-kber/issues">Issues</a> page to report a bug or to add a feature request.
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dylandoamaral/trakt-integration/main/images/showcase.png" alt="Showcase Example" />
+  <img src="https://raw.githubusercontent.com/kennypy/trakt-integration-kber/main/images/showcase.png" alt="Showcase Example" />
 </p>
 
 <p align="center">
@@ -438,7 +438,7 @@ There is already another integration for Trakt, [sensor.trakt](https://github.co
 
 ### Feature Requests and Contributions
 
-Don't hesitate to [ask for features](https://github.com/dylandoamaral/trakt-integration/issues) or contribute your own [pull request](https://github.com/dylandoamaral/trakt-integration/pulls). ⭐
+Don't hesitate to [ask for features](https://github.com/kennypy/trakt-integration-kber/issues) or contribute your own [pull request](https://github.com/kennypy/trakt-integration-kber/pulls). ⭐
 
 ### For Developers
 
