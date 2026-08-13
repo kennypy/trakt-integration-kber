@@ -33,6 +33,7 @@
                     "enable_recommendation": "Recomendações",
                     "enable_anticipated": "Antecipados",
                     "enable_watchlist": "Lista de Visualização",
+                    "enable_collection": "Coleção",
                     "enable_stats": "Estatísticas",
                     "enable_now_playing": "A Reproduzir Agora"
                 }

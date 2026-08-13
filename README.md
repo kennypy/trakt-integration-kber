@@ -4,41 +4,31 @@
   <a href="https://github.com/custom-components/hacs">
     <img src="https://img.shields.io/badge/HACS-Default-orange.svg" alt="HACS" />
   </a>
-  <a href="https://github.com/dylandoamaral/trakt-integration">
-    <img src="https://img.shields.io/github/v/release/dylandoamaral/trakt-integration" alt="Release" />
+  <a href="https://github.com/kennypy/trakt-integration-kber">
+    <img src="https://img.shields.io/github/v/release/kennypy/trakt-integration-kber" alt="Release" />
   </a>
-  <a href="https://github.com/dylandoamaral/trakt-integration">
-    <img src="https://img.shields.io/github/last-commit/dylandoamaral/trakt-integration" alt="Last Commit" />
+  <a href="https://github.com/kennypy/trakt-integration-kber">
+    <img src="https://img.shields.io/github/last-commit/kennypy/trakt-integration-kber" alt="Last Commit" />
   </a>
-  <a href="https://www.buymeacoffee.com/dylandoamaral">
+  <a href="https://www.buymeacoffee.com/kennypy">
     <img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow" alt="Donate Coffee" />
   </a>
 </p>
 
 <p align="center">
-  View your Trakt calendar items in <a href="https://github.com/custom-cards/upcoming-media-card">Upcoming Media Card</a> on a Home Assistant dashboard.
+  View your Trakt calendar items on a Home Assistant dashboard.
 </p>
 
 <p align="center">
   :warning: This is still an early release. It may not be stable and it may have bugs. :warning:<br />
-  See the <a href="https://github.com/dylandoamaral/trakt-integration/issues">Issues</a> page to report a bug or to add a feature request.
+  See the <a href="https://github.com/kennypy/trakt-integration-kber/issues">Issues</a> page to report a bug or to add a feature request.
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dylandoamaral/trakt-integration/main/images/showcase.png" alt="Showcase Example" />
-</p>
-
-<p align="center">
-  The image above was generated using <a href="https://github.com/custom-cards/upcoming-media-card">Upcoming Media Card</a> and <a href="https://github.com/dylandoamaral/upcoming-media-card-modification">Upcoming Media Card modification</a>.
+  <img src="https://raw.githubusercontent.com/kennypy/trakt-integration-kber/main/images/showcase.png" alt="Showcase Example" />
 </p>
 
 ---
-
-## Recomendations 💡
-
-Having the following installed in Home Assistant will help best use this integration:
-
-- [Upcoming Media Card](https://github.com/custom-cards/upcoming-media-card)
 
 ## Installation 🏠
 
@@ -52,7 +42,7 @@ This integration is available in [HACS](https://hacs.xyz/) (Home Assistant Commu
 - Press the **Explore & Add Repositories** button
 - Search for "Trakt"
   - Note: There are two Trakt integrations.
-    Choose the one with the description "A Trakt integration for Home Assistant compatible with upcoming media card".
+    Choose this one, not sensor.trakt.
     See [Why not use sensor.trakt?](#why-not-use-sensortrakt-)
 - Press the **Install this repository in HACS** button
 - Press the **Install** button
@@ -248,6 +238,28 @@ trakt_tv:
         sort_order: asc
 ```
 
+##### Collection Sensors
+
+These sensors display movies and shows from your personal Trakt.tv collection.
+
+- `sensor.trakt_collection_movies`: Creates a sensor with movies from your collection.
+- `sensor.trakt_collection_shows`: Creates a sensor with shows from your collection.
+
+###### Configuration
+
+```yaml
+trakt_tv:
+  sensors:
+    collection:
+      movie:
+        max_medias: 20
+      show:
+        max_medias: 20
+```
+
+`max_medias` is the maximum number of collected movies or shows to display. Its
+default value is `20`. Items are displayed in the order returned by Trakt.
+
 ##### Lists sensor
 
 Lists sensor allows you to fetch both public and private lists from Trakt, each list will be a sensor. The items in the list will be sorted by their rank on Trakt.
@@ -388,26 +400,6 @@ You have to provide a `client_id` and a `client_secret` to use this integration.
 
 Depending on the options you set in the `configuration.yaml` file, the sensors may take a while to be created and populated.
 
-### 6. Add an Upcoming Media Card
-
-Go to your Dashboard, enable editing, and add a manual card like the following:
-
-```yaml
-type: custom:upcoming-media-card
-entity: sensor.trakt_upcoming_shows
-title: Upcoming Episodes
-image_style: fanart
-hide_empty: true
-title_text: $title
-line1_text: $episode
-line2_text: $number
-line3_text: $day, $date $time
-line4_text: $empty
-max: 10
-```
-
-See the [Upcoming Media Card](https://github.com/custom-cards/upcoming-media-card) page for formatting and display options to add to your card.
-
 ---
 
 ## Workaround
@@ -438,7 +430,7 @@ There is already another integration for Trakt, [sensor.trakt](https://github.co
 
 ### Feature Requests and Contributions
 
-Don't hesitate to [ask for features](https://github.com/dylandoamaral/trakt-integration/issues) or contribute your own [pull request](https://github.com/dylandoamaral/trakt-integration/pulls). ⭐
+Don't hesitate to [ask for features](https://github.com/kennypy/trakt-integration-kber/issues) or contribute your own [pull request](https://github.com/kennypy/trakt-integration-kber/pulls). ⭐
 
 ### For Developers
 
