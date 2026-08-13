@@ -3,8 +3,13 @@
 DOMAIN = "trakt_tv"
 
 API_HOST = "https://api.trakt.tv"
-OAUTH2_AUTHORIZE = "https://trakt.tv/oauth/authorize"
-OAUTH2_TOKEN = f"{API_HOST}/oauth/token"
+# Trakt requires the dedicated auth hostname for ALL OAuth requests
+# (authorize, token exchange, refresh). The legacy trakt.tv/oauth/authorize
+# route drops query parameters on the redesigned website, which surfaces as
+# "invalid_client: client_id is required" on the authorize page.
+AUTH_HOST = "https://auth.trakt.tv"
+OAUTH2_AUTHORIZE = f"{AUTH_HOST}/oauth/authorize"
+OAUTH2_TOKEN = f"{AUTH_HOST}/oauth/token"
 
 TMDB_HOST = "http://api.tmdb.org"
 TMDB_TOKEN = "0eee347e2333d7a97b724106353ca42f"
